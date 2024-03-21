@@ -14,9 +14,36 @@ const Register_Form = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(user);
+    if (
+      user.name === "" ||
+      user.email === "" ||
+      user.password1 === "" ||
+      user.password2 === ""
+    ) {
+      alert("Please enter all the fields...");
+      return;
+    }
+
+    if (user.password1 !== user.password2) {
+      alert("Passwords aren't matching, Please enter again...");
+      return;
+    }
+
+    if (!/^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/.test(user.email)) {
+      alert("Please enter a valid email address...");
+      return;
+    }
+  };
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
-      <form className="w-1/4 border border-secondary border-4 rounded-md m-auto p-5">
+      <form
+        onSubmit={handleSubmit}
+        className="w-1/4 border-secondary border-4 rounded-md m-auto  px-2 py-5  "
+      >
         <div className="w-full flex justify-center">
           <h1 className="text-xl font-bold text-black underline">
             Register-Form
@@ -55,7 +82,7 @@ const Register_Form = () => {
           <input
             type="password"
             placeholder="Enter your password..."
-            name="password"
+            name="password1"
             value={user.password1}
             onChange={inputChangeHandler}
             className="bg-zinc-200 px-2"
@@ -68,11 +95,17 @@ const Register_Form = () => {
           <input
             type="password"
             placeholder="Re-enter your password..."
-            name="name"
+            name="password2"
             value={user.password2}
             onChange={inputChangeHandler}
             className="bg-zinc-200 px-2"
           />
+        </div>
+
+        <div className="flex items-center justify-center mt-4">
+          <button className="hover:bg-secondary hover:text-white active:scale-110 rounded-lg px-3 py-2 border border-2 border-primary text-xl font-bold">
+            Register
+          </button>
         </div>
       </form>
     </div>
