@@ -13,17 +13,17 @@ const PublicNav = () => {
         />
       </div>
 
-      <div className="nav-content w-40">
+      <div className="nav-content w-48">
         <ul className="flex justify-between h-10">
           <Link
             to="/login"
-            className="text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2"
+            className="rounded-lg border border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2"
           >
             Login
           </Link>
           <Link
             to="/register"
-            className="text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2"
+            className="rounded-lg border border-2 hover:border-white  border-black px-3 text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2"
           >
             Register
           </Link>
