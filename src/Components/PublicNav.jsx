@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const PublicNav = () => {
   return (
@@ -15,18 +15,26 @@ const PublicNav = () => {
 
       <div className="nav-content w-48">
         <ul className="flex justify-between h-10">
-          <Link
+          <NavLink
             to="/login"
-            className="rounded-lg border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2"
+            className={(e) =>
+              `rounded-lg border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2 ${
+                e.isActive && "border-white text-white shadow-lg "
+              }`
+            }
           >
             Login
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/register"
-            className="rounded-lg border-2 hover:border-white  border-black px-3 text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2"
+            className={(e) =>
+              `rounded-lg border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2 ${
+                e.isActive && "border-white text-white shadow-lg "
+              }`
+            }
           >
             Register
-          </Link>
+          </NavLink>
         </ul>
       </div>
     </nav>
