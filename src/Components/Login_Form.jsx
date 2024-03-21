@@ -18,7 +18,7 @@ const Login_Form = () => {
     <div className="w-full h-full flex flex-col items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="w-1/4 border border-secondary border-4 rounded-md m-auto px-2 py-5 "
+        className="w-1/4 border-secondary border-4 rounded-md m-auto px-2 py-5 "
       >
         <div className="w-full flex justify-center">
           <h1 className="text-xl font-bold text-black underline">

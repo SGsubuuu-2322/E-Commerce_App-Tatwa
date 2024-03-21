@@ -1,8 +1,11 @@
 // import React from 'react'
 
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerAPI } from "../Api/Auth";
 
 const Register_Form = () => {
+  const Dispatch = useDispatch();
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -36,6 +39,10 @@ const Register_Form = () => {
       alert("Please enter a valid email address...");
       return;
     }
+
+    Dispatch(registerAPI(user)).then((data) => {
+      console.log(data);
+    });
   };
 
   return (
