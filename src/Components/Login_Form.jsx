@@ -1,8 +1,11 @@
 // import React from 'react'
 
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Login_Form = () => {
+  const allUsers = useSelector((state) => state.allUsers);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -12,18 +15,19 @@ const Login_Form = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(allUsers);
+  };
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="w-1/4 border-secondary border-4 rounded-md m-auto px-2 py-5 "
+        className="w-1/4 border-secondary border-4 rounded-md mx-auto px-2 py-5 "
       >
         <div className="w-full flex justify-center">
-          <h1 className="text-xl font-bold text-black underline">
-            Register-Form
-          </h1>
+          <h1 className="text-xl font-bold text-black underline">Login-Form</h1>
         </div>
         <div className="input-container flex flex-col">
           <label htmlFor="name" className="text-xl font-bold text-black">
@@ -58,6 +62,12 @@ const Login_Form = () => {
           </button>
         </div>
       </form>
+      <Link
+        to="/register"
+        className="text-primary text-sm font-semibold hover:text-black hover:underline hover"
+      >
+        Not have an account ? Register then...
+      </Link>
     </div>
   );
 };

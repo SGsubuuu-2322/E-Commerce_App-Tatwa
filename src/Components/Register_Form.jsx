@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerAPI } from "../Api/Auth";
+import { Link } from "react-router-dom";
 
 const Register_Form = () => {
   const Dispatch = useDispatch();
@@ -40,19 +41,23 @@ const Register_Form = () => {
       return;
     }
 
-    Dispatch(registerAPI(user)).then((data) => {
-      console.log(data);
-    });
+    Dispatch(
+      registerAPI({
+        name: user.name,
+        email: user.email,
+        password: user.password1,
+      })
+    );
   };
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="w-1/4 border-secondary border-4 rounded-md m-auto  px-2 py-5  "
+        className="w-1/4 border-secondary border-4 rounded-md mx-auto  px-2 py-5  "
       >
         <div className="w-full flex justify-center">
-          <h1 className="text-xl font-bold text-black underline">
+          <h1 className="text-xl font-bold text-black underline bg-secondary px-2 py-1 rounded-full hover:bg-black hover:text-white">
             Register-Form
           </h1>
         </div>
@@ -115,6 +120,12 @@ const Register_Form = () => {
           </button>
         </div>
       </form>
+      <Link
+        to="/login"
+        className="text-primary text-sm font-semibold hover:text-black hover:underline hover"
+      >
+        Already have an account ? Login then...
+      </Link>
     </div>
   );
 };

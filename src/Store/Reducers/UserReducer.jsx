@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { registerAPI } from "../../Api/Auth";
 
 const initialState = {
-  allUsers: [],
+  allUsers: JSON.parse(localStorage.getItem("allUsers")) || [],
 };
 
 const userSlice = createSlice({
@@ -11,7 +11,9 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(registerAPI.fulfilled, (state, action) => {
-      state.allUsers = action.payload;
+      // console.log("From Reducer--------", action.payload);
+      state.allUsers = [...state.allUsers, action.payload];
+      localStorage.setItem("allUsers", JSON.stringify(state.allUsers));
     });
   },
 });

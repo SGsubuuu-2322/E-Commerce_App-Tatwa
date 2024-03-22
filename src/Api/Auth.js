@@ -3,6 +3,18 @@ import axios from "axios";
 import { API_URL } from "../Config";
 
 export const registerAPI = createAsyncThunk("user-register", async (body) => {
-  const response = await axios.post(`${API_URL}/users`, body);
-  return response.data;
+  try {
+    const response = await axios.post(`${API_URL}/users`, body);
+    return { ...response.data, ...body };
+  } catch (err) {
+    console.log(err.response);
+  }
+});
+export const loginAPI = createAsyncThunk("user-login", async (body) => {
+  try {
+    const response = await axios.post(`${API_URL}/auth/login`, body);
+    return { ...response.data, ...body };
+  } catch (err) {
+    console.log(err.response);
+  }
 });
