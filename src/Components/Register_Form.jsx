@@ -1,11 +1,12 @@
 // import React from 'react'
 
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerAPI } from "../Api/Auth";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register_Form = () => {
+  const { allUsers } = useSelector((state) => state.allUsers);
   const Navigate = useNavigate();
   const Dispatch = useDispatch();
   const [user, setUser] = useState({
@@ -29,6 +30,11 @@ const Register_Form = () => {
       user.password2 === ""
     ) {
       alert("Please enter all the fields...");
+      return;
+    }
+
+    if (allUsers.filter((u) => u.email == user.email).length > 0) {
+      alert("This email is already registered, Try with the new one...");
       return;
     }
 
