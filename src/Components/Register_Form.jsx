@@ -57,7 +57,7 @@ const Register_Form = () => {
         className="w-1/4 border-secondary border-4 rounded-md mx-auto  px-2 py-5  "
       >
         <div className="w-full flex justify-center">
-          <h1 className="text-xl font-bold text-black underline bg-secondary px-2 py-1 rounded-full hover:bg-black hover:text-white">
+          <h1 className="text-xl font-bold text-black underline border-4 border-secondary hover:bg-secondary px-2 py-1 rounded-full hover:bg-black hover:text-white">
             Register-Form
           </h1>
         </div>

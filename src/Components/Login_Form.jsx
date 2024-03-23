@@ -1,13 +1,16 @@
 // import React from 'react'
 
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { loginAPI } from "../Api/Auth";
 
 const Login_Form = () => {
-  const allUsers = useSelector((state) => state.allUsers);
+  const Dispatch = useDispatch();
+  // const allUsers = useSelector((state) => state.allUsers);
   const [user, setUser] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -17,7 +20,8 @@ const Login_Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(allUsers);
+    Dispatch(loginAPI(user));
+    // console.log(allUsers);
   };
 
   return (
@@ -27,17 +31,19 @@ const Login_Form = () => {
         className="w-1/4 border-secondary border-4 rounded-md mx-auto px-2 py-5 "
       >
         <div className="w-full flex justify-center">
-          <h1 className="text-xl font-bold text-black underline">Login-Form</h1>
+          <h1 className="text-xl font-bold text-black underline border-4 border-secondary hover:bg-secondary px-2 py-1 rounded-full hover:bg-black hover:text-white">
+            Login-Form
+          </h1>
         </div>
         <div className="input-container flex flex-col">
           <label htmlFor="name" className="text-xl font-bold text-black">
-            Email:{" "}
+            Username:{" "}
           </label>
           <input
             type="email"
             placeholder="Enter your email..."
-            name="email"
-            value={user.email}
+            name="username"
+            value={user.username}
             onChange={inputChangeHandler}
             className="bg-zinc-200 px-2"
           />
