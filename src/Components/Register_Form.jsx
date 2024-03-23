@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerAPI } from "../Api/Auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register_Form = () => {
+  const Navigate = useNavigate();
   const Dispatch = useDispatch();
   const [user, setUser] = useState({
     name: "",
@@ -48,6 +49,7 @@ const Register_Form = () => {
         password: user.password1,
       })
     );
+    Navigate("/login");
   };
 
   return (

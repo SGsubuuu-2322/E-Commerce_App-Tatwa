@@ -1,14 +1,12 @@
 // import React from 'react'
 
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-// import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { loginAPI } from "../Api/Auth";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login_Form = () => {
-  const Dispatch = useDispatch();
-  // const allUsers = useSelector((state) => state.allUsers);
+  const Navigate = useNavigate();
+  const { allUsers } = useSelector((state) => state.allUsers);
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -20,8 +18,31 @@ const Login_Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Dispatch(loginAPI(user));
-    // console.log(allUsers);
+    console.log(allUsers);
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (allUsers.length != 0) {
+      const validUser = allUsers.filter((u) => u.email == user.username)[0];
+      if (validUser) {
+        if (validUser.password == user.password) {
+          if (loggedInUser) {
+            localStorage.removeItem("loggedInUser");
+            localStorage.setItem("loggedInUser", JSON.stringify(validUser));
+          } else {
+            localStorage.setItem("loggedInUser", JSON.stringify(validUser));
+          }
+          Navigate("/");
+        } else {
+          alert("Please enter a valid username and password1");
+          return;
+        }
+      } else {
+        alert("Please enter a valid username and password2");
+        return;
+      }
+    } else {
+      alert("Please register yourself first...");
+      Navigate("/register");
+    }
   };
 
   return (

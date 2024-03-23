@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginAPI, registerAPI } from "../../Api/Auth";
+import { registerAPI } from "../../Api/Auth";
 
 const initialState = {
   allUsers: JSON.parse(localStorage.getItem("allUsers")) || [],
+  loggedInUser: JSON.parse(localStorage.getItem("loggedInUser")) || [],
 };
 
 const userSlice = createSlice({
@@ -14,12 +15,6 @@ const userSlice = createSlice({
       // console.log("From Reducer--------", action.payload);
       state.allUsers = [...state.allUsers, action.payload];
       localStorage.setItem("allUsers", JSON.stringify(state.allUsers));
-    });
-    builder.addCase(loginAPI.fulfilled, (state, action) => {
-      console.log(action.payload);
-      // console.log("From Reducer--------", action.payload);
-      // state.allUsers = [...state.allUsers, action.payload];
-      // localStorage.setItem("allUsers", JSON.stringify(state.allUsers));
     });
   },
 });
