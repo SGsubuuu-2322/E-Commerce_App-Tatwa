@@ -1,10 +1,12 @@
 // import React from 'react'
 
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { refreshLoggedInUser } from "../Store/Reducers/UserReducer";
 
 const Login_Form = () => {
+  const Dispatch = useDispatch();
   const Navigate = useNavigate();
   const { allUsers } = useSelector((state) => state.allUsers);
   const [user, setUser] = useState({
@@ -18,7 +20,7 @@ const Login_Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(allUsers);
+    // console.log(allUsers);
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     if (allUsers.length != 0) {
       const validUser = allUsers.filter((u) => u.email == user.username)[0];
@@ -27,8 +29,10 @@ const Login_Form = () => {
           if (loggedInUser) {
             localStorage.removeItem("loggedInUser");
             localStorage.setItem("loggedInUser", JSON.stringify(validUser));
+            Dispatch(refreshLoggedInUser());
           } else {
             localStorage.setItem("loggedInUser", JSON.stringify(validUser));
+            Dispatch(refreshLoggedInUser());
           }
           Navigate("/");
         } else {

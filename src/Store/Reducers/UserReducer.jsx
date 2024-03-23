@@ -9,7 +9,11 @@ const initialState = {
 const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    refreshLoggedInUser: (state) => {
+      state.loggedInUser = [JSON.parse(localStorage.getItem("loggedInUser"))];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(registerAPI.fulfilled, (state, action) => {
       // console.log("From Reducer--------", action.payload);
@@ -20,3 +24,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+export const { refreshLoggedInUser } = userSlice.actions;
