@@ -65,7 +65,7 @@ const Register_Form = () => {
         className="w-1/4 border-secondary border-4 rounded-md mx-auto  px-2 py-5  "
       >
         <div className="w-full flex justify-center">
-          <h1 className="text-xl font-bold text-black underline border-4 border-secondary hover:bg-secondary px-2 py-1 rounded-full hover:bg-black hover:text-white">
+          <h1 className="text-xl font-bold text-black underline border-4 border-secondary hover:bg-secondary px-2 py-1 rounded-full hover:text-white">
             Register-Form
           </h1>
         </div>
@@ -123,7 +123,7 @@ const Register_Form = () => {
         </div>
 
         <div className="flex items-center justify-center mt-4">
-          <button className="hover:bg-secondary hover:text-white active:scale-110 rounded-lg px-3 py-2 border border-2 border-primary text-xl font-bold">
+          <button className="hover:bg-secondary hover:text-white active:scale-110 rounded-lg px-3 py-2 border-2 border-primary text-xl font-bold">
             Register
           </button>
         </div>
