@@ -13,27 +13,37 @@ const AuthNav = () => {
         />
       </div>
 
-      <div className="nav-content w-48">
+      <div className="nav-content w-[25%]">
         <ul className="flex justify-between h-10">
           <NavLink
-            to="/login"
+            to="/"
             className={(e) =>
               `rounded-lg border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2 ${
                 e.isActive && "border-white text-white shadow-lg "
               }`
             }
           >
-            Login
+            Home
           </NavLink>
           <NavLink
-            to="/register"
+            to="/about"
             className={(e) =>
               `rounded-lg border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2 ${
                 e.isActive && "border-white text-white shadow-lg "
               }`
             }
           >
-            Register
+            Account
+          </NavLink>
+          <NavLink
+            to="/logout"
+            className={(e) =>
+              `rounded-lg border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2 ${
+                e.isActive && "border-white text-white shadow-lg "
+              }`
+            }
+          >
+            Logout
           </NavLink>
         </ul>
       </div>
