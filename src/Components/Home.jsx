@@ -1,9 +1,15 @@
 // import React from 'react'
 
+import AsideSection from "./AsideSection";
+import Sidebar from "./Sidebar";
+
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <div className="w-full h-screen flex">
+      <Sidebar />
+      <AsideSection />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
