@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const AuthNav = () => {
   return (
-    <nav className="w-full h-20 bg-secondary flex justify-between items-center px-5">
+    <nav className="w-full h-20  bg-secondary flex justify-between items-center px-5">
       <div className="image-container hover:scale-110 w-30 h-10 rounded-md overflow-hidden">
         <img
           src="https://www.shutterstock.com/image-vector/shopping-logo-ecommerce-logotype-shooping-260nw-1978607771.jpg"
