@@ -1,24 +1,38 @@
 // import React from 'react'
 
+// import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+// import { getProductsAPI } from "../Api/Auth";
 
 const AsideSection = () => {
+  // const Dispatch = useDispatch();
   const { allProducts } = useSelector((state) => state.allProducts);
+
+  // useEffect(() => {
+  //   Dispatch(getProductsAPI());
+  // }, []);
+
   return (
     <div className=" w-full bg-purple-100 p-10 overflow-x-hidden overflow-y-auto">
-      {
-        <Link className=" w-20 h-20 border-2 bg-blue-200">
-          <div className=" h bg-red-200">
-            <img
-              className="object-contain "
-              src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-              alt="product-image"
-            />
-          </div>
-          <h1>Product Name</h1>
-        </Link>
-      }
+      {allProducts &&
+        allProducts.map((pr, ind) => {
+          return (
+            <Link
+              key={ind}
+              className="inline-block w-40 h-40 bg-white overflow-hidden p-5 rounded-lg shadow-xl"
+            >
+              <div className="h-3/4 hover:scale-110">
+                <img
+                  className="h-full w-full object-contain"
+                  src={`${pr.image}`}
+                  alt="product-img"
+                />
+              </div>
+              <h2 className="text-center text-md tracking-tight">{pr.title}</h2>
+            </Link>
+          );
+        })}
     </div>
   );
 };

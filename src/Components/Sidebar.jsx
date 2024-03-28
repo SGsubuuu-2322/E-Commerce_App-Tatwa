@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAPI } from "../Api/Auth";
 import { NavLink } from "react-router-dom";
@@ -9,17 +9,19 @@ import { tailwindBorderColors } from "../Config";
 const Sidebar = () => {
   const Dispatch = useDispatch();
   const { allProducts } = useSelector((state) => state.allProducts);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    Dispatch(getProductsAPI());
-  }, []);
-
-  const products = allProducts[0];
-
-  const categories =
-    products && products.reduce((acc, curr) => [...acc, curr.category], []);
-
-  const distinctCategory = [...new Set(categories)];
+    if (allProducts.length > 0) {
+      setCategories([
+        ...new Set(
+          allProducts.reduce((acc, curr) => [...acc, curr.category], [])
+        ),
+      ]);
+    } else {
+      Dispatch(getProductsAPI());
+    }
+  }, [allProducts]);
 
   //   console.log(distinctCategory);
   return (
@@ -30,7 +32,7 @@ const Sidebar = () => {
         </div>
         <hr className="mb-3 border-black w-full" />
         <div className="sidebar-list flex flex-col">
-          {distinctCategory.map((category, i) => {
+          {categories.map((category, i) => {
             return (
               <NavLink
                 key={i}

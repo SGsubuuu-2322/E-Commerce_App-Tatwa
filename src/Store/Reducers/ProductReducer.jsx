@@ -11,8 +11,7 @@ export const productSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getProductsAPI.fulfilled, (state, action) => {
-      //   console.log(action.payload);
-      state.allProducts = [...state.allProducts, action.payload];
+      state.allProducts = [...state.allProducts, ...action.payload];
       localStorage.setItem("allProducts", JSON.stringify(state.allProducts));
     });
   },
