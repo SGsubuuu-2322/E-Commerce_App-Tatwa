@@ -1,18 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProductsAPI } from "../../Api/Auth";
+import { getProductsAPI, getSingleProductAPI } from "../../Api/Auth";
 
 const initialState = {
   allProducts: [],
+  singleProduct: {},
 };
 
 export const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setSingleProduct: (state, action) => {
+      return { ...state, singleProduct: action.payload };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getProductsAPI.fulfilled, (state, action) => {
       state.allProducts = [...state.allProducts, ...action.payload];
       localStorage.setItem("allProducts", JSON.stringify(state.allProducts));
     });
+    builder.addCase(getSingleProductAPI.fulfilled, (state, action) => {
+      // console.log("From product Reducer--------", action.payload);
+      return {
+        ...state,
+        singleProduct: action.payload,
+      };
+    });
   },
 });
+export const { setSingleProduct } = productSlice.actions;

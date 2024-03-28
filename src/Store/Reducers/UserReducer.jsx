@@ -16,7 +16,6 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(registerAPI.fulfilled, (state, action) => {
-      // console.log("From Reducer--------", action.payload);
       state.allUsers = [...state.allUsers, action.payload];
       localStorage.setItem("allUsers", JSON.stringify(state.allUsers));
     });

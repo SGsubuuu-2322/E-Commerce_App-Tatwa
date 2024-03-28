@@ -19,3 +19,16 @@ export const getProductsAPI = createAsyncThunk("all-products", async () => {
     console.log(err.response);
   }
 });
+
+export const getSingleProductAPI = createAsyncThunk(
+  "single-product",
+  async (id) => {
+    try {
+      const response = await axios.get(`${API_URL}/products/${id}`);
+      // console.log("Response from API---", response.data);
+      return response.data;
+    } catch (err) {
+      console.log(err.response);
+    }
+  }
+);
