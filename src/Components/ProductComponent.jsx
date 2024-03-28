@@ -2,10 +2,11 @@
 import { useEffect } from "react";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getSingleProductAPI } from "../Api/Auth";
 
 const ProductComponent = () => {
+  const Navigate = useNavigate();
   const Dispatch = useDispatch();
   const { id } = useParams();
   const { singleProduct } = useSelector((state) => state.allProducts);
@@ -14,15 +15,18 @@ const ProductComponent = () => {
     if (Object.keys(singleProduct).length === 0) {
       Dispatch(getSingleProductAPI(id));
     }
-    /*
-        call the product by id API and store it in single Product
-     */
   }, []);
 
   return (
-    <div className="w-full h-full bg-purple-200 p-10 pb-32">
-      <div className="rounded-full h-full w-3/4 m-auto bg-white flex flex-col items-center justify-center shadow-2xl p-6 overflow-hidden">
-        <h1 className="text-2xl font-bold text-primary">
+    <div className="w-full h-full bg-purple-100 p-10 pb-32 overflow-y-scroll">
+      <button
+        className="px-5 py-2 rounded-3xl bg-secondary text-white font-semibold text-xl hover:scale-110"
+        onClick={() => Navigate(-1)}
+      >
+        Back
+      </button>
+      <div className="rounded-full h-auto w-3/4 m-auto bg-white flex flex-col items-center justify-center shadow-2xl p-6 overflow-x-hidden ">
+        <h1 className="text-xl text-center w-4/6 font-bold text-primary mt-10">
           {singleProduct?.title}
         </h1>
         <div className="w-52 h-52 bg-white">
