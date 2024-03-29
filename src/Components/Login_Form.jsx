@@ -88,7 +88,7 @@ const Login_Form = () => {
         </div>
 
         <div className="flex items-center justify-center mt-4">
-          <button className="hover:bg-white hover:border-secondary hover:text-black rounded-3xl px-5 py-1 border-2 bg-secondary text-white text-xl font-bold">
+          <button className="hover:bg-white hover:border-secondary active:scale-110 hover:text-black rounded-3xl px-5 py-1 border-2 bg-secondary text-white text-xl font-bold">
             Login
           </button>
         </div>
