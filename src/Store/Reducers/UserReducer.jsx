@@ -10,8 +10,11 @@ const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
+    refreshAllUsers: (state) => {
+      state.allUsers = JSON.parse(localStorage.getItem("allUsers"));
+    },
     refreshLoggedInUser: (state) => {
-      state.loggedInUser = [JSON.parse(localStorage.getItem("loggedInUser"))];
+      state.loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     },
   },
   extraReducers: (builder) => {
@@ -23,4 +26,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { refreshLoggedInUser } = userSlice.actions;
+export const { refreshLoggedInUser, refreshAllUsers } = userSlice.actions;
