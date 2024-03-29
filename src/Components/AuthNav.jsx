@@ -1,8 +1,15 @@
 // import React from 'react'
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const AuthNav = () => {
+  const Navigate = useNavigate();
+
+  const handleClick = () => {
+    localStorage.removeItem("loggedInUser");
+    Navigate("/login");
+  };
+
   return (
     <nav className="w-full h-20  bg-secondary flex justify-between items-center px-5">
       <div className="image-container hover:scale-110 w-30 h-10 rounded-md overflow-hidden">
@@ -35,16 +42,14 @@ const AuthNav = () => {
           >
             Account
           </NavLink>
-          <NavLink
-            to="/logout"
-            className={(e) =>
-              `rounded-lg border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2 ${
-                e.isActive && "border-white text-white shadow-lg "
-              }`
+          <button
+            onClick={handleClick}
+            className={
+              "rounded-lg border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2 "
             }
           >
             Logout
-          </NavLink>
+          </button>
         </ul>
       </div>
     </nav>
