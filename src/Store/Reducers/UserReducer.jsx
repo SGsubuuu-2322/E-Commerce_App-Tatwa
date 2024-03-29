@@ -10,6 +10,13 @@ const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
+    deleteUser: (state, action) => {
+      state.allUsers = state.allUsers.filter(
+        (user) => user.email !== action.payload.email
+      );
+      localStorage.setItem("allUsers", JSON.stringify(state.allUsers));
+      localStorage.removeItem("loggedInUser"); // console.log(state.allUsers);
+    },
     refreshAllUsers: (state) => {
       state.allUsers = JSON.parse(localStorage.getItem("allUsers"));
     },
@@ -26,4 +33,5 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { refreshLoggedInUser, refreshAllUsers } = userSlice.actions;
+export const { refreshLoggedInUser, refreshAllUsers, deleteUser } =
+  userSlice.actions;

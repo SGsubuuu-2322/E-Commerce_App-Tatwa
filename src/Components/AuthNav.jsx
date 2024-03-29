@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const AuthNav = () => {
   const Navigate = useNavigate();
@@ -12,13 +12,16 @@ const AuthNav = () => {
 
   return (
     <nav className="w-full h-20  bg-secondary flex justify-between items-center px-5">
-      <div className="image-container hover:scale-110 w-30 h-10 rounded-md overflow-hidden">
+      <Link
+        to="/"
+        className="image-container hover:scale-110 w-30 h-10 rounded-md overflow-hidden"
+      >
         <img
           src="https://www.shutterstock.com/image-vector/shopping-logo-ecommerce-logotype-shooping-260nw-1978607771.jpg"
           alt="logo"
           className="w-full h-full object-contain"
         />
-      </div>
+      </Link>
 
       <div className="nav-content w-[25%]">
         <ul className="flex justify-between h-10">

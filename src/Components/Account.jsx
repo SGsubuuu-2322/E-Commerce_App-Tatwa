@@ -1,7 +1,7 @@
 // import React from 'react'
 
 import { useDispatch, useSelector } from "react-redux";
-import { refreshAllUsers } from "../Store/Reducers/UserReducer";
+import { deleteUser } from "../Store/Reducers/UserReducer";
 import { useNavigate } from "react-router-dom";
 
 const Account = () => {
@@ -11,13 +11,14 @@ const Account = () => {
   //   console.log(loggedInUser);
 
   const handleDeletion = () => {
-    const filteredUsers = JSON.parse(localStorage.getItem("allUsers")).filter(
-      (user) => user.email !== loggedInUser.email
-    );
+    // const filteredUsers = JSON.parse(localStorage.getItem("allUsers")).filter(
+    //   (user) => user.email !== loggedInUser.email
+    // );
 
-    localStorage.setItem("allUsers", JSON.stringify(filteredUsers));
-    Dispatch(refreshAllUsers());
-    localStorage.removeItem("loggedInUser");
+    // localStorage.setItem("allUsers", JSON.stringify(filteredUsers));
+    // Dispatch(refreshAllUsers());
+    // localStorage.removeItem("loggedInUser");
+    Dispatch(deleteUser(loggedInUser));
     Navigate("/login");
   };
   return (
