@@ -50,7 +50,7 @@ const Login_Form = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-full h-full flex flex-col items-center justify-center pt-20">
       <form
         onSubmit={handleSubmit}
         className="w-1/4 border-secondary border-4 rounded-md mx-auto px-2 py-5 "
@@ -88,7 +88,7 @@ const Login_Form = () => {
         </div>
 
         <div className="flex items-center justify-center mt-4">
-          <button className="hover:bg-secondary hover:text-white active:scale-110 rounded-lg px-3 py-2 border-2 border-primary text-xl font-bold">
+          <button className="hover:bg-white hover:border-secondary hover:text-black rounded-3xl px-5 py-1 border-2 bg-secondary text-white text-xl font-bold">
             Login
           </button>
         </div>
