@@ -1,24 +1,34 @@
 // import React from 'react'
 
-// import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setSingleProduct } from "../Store/Reducers/ProductReducer";
-// import { getProductsAPI } from "../Api/Auth";
+import { useEffect, useState } from "react";
+import { getFilteredProductsAPI } from "../Api/Auth";
 
 const AsideSection = () => {
   const Dispatch = useDispatch();
+  const { search } = useLocation();
+  const category = decodeURIComponent(search.split("=")[1]);
   const Navigate = useNavigate();
   const { allProducts } = useSelector((state) => state.allProducts);
+  // const { filteredProducts } = useSelector((state) => state.allProducts);
+  const [products, setProducts] = useState(allProducts);
 
-  // useEffect(() => {
-  //   Dispatch(getProductsAPI());
-  // }, []);
+  useEffect(() => {
+    if (category !== "undefined") {
+      Dispatch(getFilteredProductsAPI(category)).then((res) =>
+        setProducts(res.payload)
+      );
+    } else {
+      setProducts(allProducts);
+    }
+  }, [category, allProducts]);
 
   return (
     <div className="w-full bg-purple-100 overflow-x-hidden overflow-y-auto flex flex-wrap justify-center items-center gap-2 p-10 mb-20">
-      {allProducts &&
-        allProducts.map((pr, ind) => {
+      {products &&
+        products.map((pr, ind) => {
           return (
             <button
               onClick={() => {

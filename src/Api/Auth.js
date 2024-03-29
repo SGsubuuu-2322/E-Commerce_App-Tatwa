@@ -32,3 +32,18 @@ export const getSingleProductAPI = createAsyncThunk(
     }
   }
 );
+
+export const getFilteredProductsAPI = createAsyncThunk(
+  "filered-products",
+  async (category) => {
+    try {
+      const response = await axios.get(
+        `${API_URL}/products/category/${category}`
+      );
+      // console.log("Response from API---", response.data);
+      return response.data;
+    } catch (err) {
+      console.log(err.response);
+    }
+  }
+);

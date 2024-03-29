@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProductsAPI, getSingleProductAPI } from "../../Api/Auth";
+import {
+  getFilteredProductsAPI,
+  getProductsAPI,
+  getSingleProductAPI,
+} from "../../Api/Auth";
 
 const initialState = {
   allProducts: [],
   singleProduct: {},
+  filteredProducts: [],
 };
 
 export const productSlice = createSlice({
@@ -24,6 +29,13 @@ export const productSlice = createSlice({
       return {
         ...state,
         singleProduct: action.payload,
+      };
+    });
+    builder.addCase(getFilteredProductsAPI.fulfilled, (state, action) => {
+      // console.log("From product Reducer--------", action.payload);
+      return {
+        ...state,
+        filteredProducts: action.payload,
       };
     });
   },

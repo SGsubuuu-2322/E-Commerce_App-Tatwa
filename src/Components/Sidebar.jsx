@@ -36,7 +36,7 @@ const Sidebar = () => {
             return (
               <NavLink
                 key={i}
-                to={`/${category}`}
+                to={`/?category=${category}`}
                 //   style={{ borderColor: getRandomColor() }}
                 className={(e) =>
                   `flex items-center gap-x-2 rounded-lg border-2 hover:border-secondary px-3 py-2  text-sm font-semibold text-black hover:underline hover:underline-offset-2 mb-4 ${
