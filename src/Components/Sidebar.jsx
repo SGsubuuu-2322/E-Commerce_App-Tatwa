@@ -38,11 +38,13 @@ const Sidebar = () => {
                 key={i}
                 to={`/${category}`}
                 //   style={{ borderColor: getRandomColor() }}
-                className={`flex items-center gap-x-2 rounded-lg border-2 hover:border-secondary px-3 py-2  text-sm font-semibold text-black hover:underline hover:underline-offset-2 mb-4 ${
-                  tailwindBorderColors[
-                    Math.floor(Math.random() * tailwindBorderColors.length)
-                  ]
-                }`}
+                className={(e) =>
+                  `flex items-center gap-x-2 rounded-lg border-2 hover:border-secondary px-3 py-2  text-sm font-semibold text-black hover:underline hover:underline-offset-2 mb-4 ${
+                    tailwindBorderColors[
+                      Math.floor(Math.random() * tailwindBorderColors.length)
+                    ]
+                  } ${e.isActive && "border-secondary"}`
+                }
               >
                 <div
                   //   style={{ backgroundColor: getRandomColor() }}
