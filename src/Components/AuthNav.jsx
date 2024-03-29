@@ -33,7 +33,7 @@ const AuthNav = () => {
             Home
           </NavLink>
           <NavLink
-            to="/about"
+            to="/account"
             className={(e) =>
               `rounded-lg border-2 hover:border-white  border-black px-3  text-xl font-semibold text-black hover:text-white hover:underline hover:underline-offset-2 ${
                 e.isActive && "border-white text-white shadow-lg "
