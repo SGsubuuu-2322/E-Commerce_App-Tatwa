@@ -43,7 +43,7 @@ const Sidebar = () => {
                     tailwindBorderColors[
                       Math.floor(Math.random() * tailwindBorderColors.length)
                     ]
-                  } ${e.isActive && "border-secondary"}`
+                  } ${e.isActive || "border-secondary"}`
                 }
               >
                 <div

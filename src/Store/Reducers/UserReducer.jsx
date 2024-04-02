@@ -4,6 +4,7 @@ import { registerAPI } from "../../Api/Auth";
 const initialState = {
   allUsers: JSON.parse(localStorage.getItem("allUsers")) || [],
   loggedInUser: JSON.parse(localStorage.getItem("loggedInUser")) || [],
+  userType: "B",
 };
 
 const userSlice = createSlice({
@@ -20,6 +21,9 @@ const userSlice = createSlice({
     refreshAllUsers: (state) => {
       state.allUsers = JSON.parse(localStorage.getItem("allUsers"));
     },
+    refreshUserType: (state, action) => {
+      state.userType = action.payload;
+    },
     refreshLoggedInUser: (state) => {
       state.loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     },
@@ -33,5 +37,9 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { refreshLoggedInUser, refreshAllUsers, deleteUser } =
-  userSlice.actions;
+export const {
+  refreshLoggedInUser,
+  refreshAllUsers,
+  refreshUserType,
+  deleteUser,
+} = userSlice.actions;
