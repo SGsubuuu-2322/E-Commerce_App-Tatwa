@@ -6,7 +6,7 @@ import { registerAPI } from "../Api/Auth";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register_Form = () => {
-  const { allUsers } = useSelector((state) => state.allUsers);
+  const { allUsers, userType } = useSelector((state) => state.allUsers);
   const Navigate = useNavigate();
   const Dispatch = useDispatch();
   const [user, setUser] = useState({
@@ -53,6 +53,7 @@ const Register_Form = () => {
         name: user.name,
         email: user.email,
         password: user.password1,
+        userType: userType,
       })
     );
     Navigate("/login");
@@ -66,7 +67,7 @@ const Register_Form = () => {
       >
         <div className="w-full flex justify-center">
           <h1 className="text-xl font-bold text-black underline border-4 border-secondary hover:bg-secondary px-2 py-1 rounded-full hover:text-white">
-            Register-Form
+            {userType == "B" ? "Buyer-" : "Seller-"}Register-Form
           </h1>
         </div>
         <div className="input-container flex flex-col">
@@ -117,6 +118,21 @@ const Register_Form = () => {
             placeholder="Re-enter your password..."
             name="password2"
             value={user.password2}
+            onChange={inputChangeHandler}
+            className="bg-zinc-200 px-2"
+          />
+        </div>
+        <div className="input-container flex flex-col">
+          <label htmlFor="name" className="text-xl font-bold text-black">
+            User-Type:{" "}
+          </label>
+          <input
+            type="text"
+            placeholder="Re-enter your password..."
+            name="userType"
+            value={userType == "B" ? "Buyer" : "Seller"}
+            readOnly
+            disabled
             onChange={inputChangeHandler}
             className="bg-zinc-200 px-2"
           />
