@@ -10,7 +10,7 @@ const Authentication = () => {
   const Navigate = useNavigate();
   const [loggedIn, setloggedIn] = useState(false);
   useEffect(() => {
-    console.log(JSON.parse(localStorage.getItem("loggedInUser")));
+    // console.log(JSON.parse(localStorage.getItem("loggedInUser")));
     if (JSON.parse(localStorage.getItem("loggedInUser"))) {
       setloggedIn(true);
     } else {

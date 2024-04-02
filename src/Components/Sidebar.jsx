@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAPI } from "../Api/Auth";
 import { NavLink } from "react-router-dom";
-import { tailwindBorderColors } from "../Config";
+import { tailwindBackgroundColors, tailwindBorderColors } from "../Config";
 
 const Sidebar = () => {
   const Dispatch = useDispatch();
@@ -49,8 +49,14 @@ const Sidebar = () => {
               >
                 <div
                   //   style={{ backgroundColor: getRandomColor() }}
-                  className="w-4 h-4 rounded-full"
-                />
+                  className={`w-4 h-4 rounded-full  ${
+                    tailwindBackgroundColors[
+                      Math.floor(
+                        Math.random() * tailwindBackgroundColors.length
+                      )
+                    ]
+                  }`}
+                ></div>
                 {category}
               </NavLink>
             );
