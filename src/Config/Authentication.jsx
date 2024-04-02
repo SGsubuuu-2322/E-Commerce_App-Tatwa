@@ -10,7 +10,7 @@ const Authentication = () => {
   const Navigate = useNavigate();
   const [loggedIn, setloggedIn] = useState(false);
   useEffect(() => {
-    // console.log(loggedInUser);
+    console.log(JSON.parse(localStorage.getItem("loggedInUser")));
     if (JSON.parse(localStorage.getItem("loggedInUser"))) {
       setloggedIn(true);
     } else {
@@ -24,7 +24,7 @@ const Authentication = () => {
     //   setloggedIn(false);
     //   Navigate("/login");
     // }
-  }, []);
+  }, [Navigate]);
   return (
     loggedIn && (
       <AuthLayout>

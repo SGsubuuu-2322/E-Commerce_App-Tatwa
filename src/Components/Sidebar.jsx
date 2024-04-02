@@ -9,6 +9,7 @@ import { tailwindBorderColors } from "../Config";
 const Sidebar = () => {
   const Dispatch = useDispatch();
   const { allProducts } = useSelector((state) => state.allProducts);
+  const { loggedInUser } = useSelector((state) => state.allUsers);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const Sidebar = () => {
     <div className="w-72 flex flex-col">
       <div className="sidebar-content h-full p-6">
         <div className="sidebar-header border-4 border-secondary rounded-md flex justify-center items-center text-md text-black font-bold mb-1">
-          Add a product
+          {loggedInUser.userType == "B" ? "Go to cart" : "Add a product"}
         </div>
         <hr className="mb-3 border-black w-full" />
         <div className="sidebar-list flex flex-col">

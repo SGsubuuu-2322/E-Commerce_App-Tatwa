@@ -8,7 +8,7 @@ const PublicNav = () => {
   const Dispatch = useDispatch();
   const { userType } = useSelector((state) => state.allUsers);
   const { pathname } = useLocation();
-  console.log(userType);
+  // console.log(userType);
   const handleOptionChange = (e) => {
     Dispatch(refreshUserType(e.target.value));
   };
