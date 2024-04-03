@@ -19,6 +19,21 @@ const userSlice = createSlice({
       localStorage.setItem("allUsers", JSON.stringify(state.allUsers));
       localStorage.removeItem("loggedInUser"); // console.log(state.allUsers);
     },
+    updateUser: (state, action) => {
+      const oldUser = state.allUsers.find(
+        (user) => user.id == action.payload.id
+      );
+      const newUser = { ...oldUser, ...action.payload };
+      const id = state.allUsers.findIndex(
+        (user) => user.id == action.payload.id
+      );
+      if (id != -1) {
+        state.allUsers[id] = newUser;
+        localStorage.setItem("loggedInUser", JSON.stringify(newUser));
+        localStorage.setItem("allUsers", JSON.stringify(state.allUsers));
+      }
+      // console.log(state.allUsers);
+    },
     refreshAllUsers: (state) => {
       state.allUsers = JSON.parse(localStorage.getItem("allUsers"));
     },
@@ -31,13 +46,10 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(registerAPI.fulfilled, (state, action) => {
-      // console.log(action.payload);
       action.payload.id = nanoid();
-      state.allUsers = [
-        ...state.allUsers,
-        action.payload,
-        // (action.payload.id = nanoid()),
-      ];
+      action.payload.profileImg =
+        "https://cdn3d.iconscout.com/3d/premium/thumb/user-6332708-5209354.png";
+      state.allUsers = [...state.allUsers, action.payload];
       localStorage.setItem("allUsers", JSON.stringify(state.allUsers));
     });
   },
@@ -49,4 +61,5 @@ export const {
   refreshAllUsers,
   refreshUserType,
   deleteUser,
+  updateUser,
 } = userSlice.actions;
