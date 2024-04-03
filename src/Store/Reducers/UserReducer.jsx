@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerAPI } from "../../Api/Auth";
+import { nanoid } from "nanoid";
 
 const initialState = {
   allUsers: JSON.parse(localStorage.getItem("allUsers")) || [],
@@ -30,7 +31,13 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(registerAPI.fulfilled, (state, action) => {
-      state.allUsers = [...state.allUsers, action.payload];
+      // console.log(action.payload);
+      action.payload.id = nanoid();
+      state.allUsers = [
+        ...state.allUsers,
+        action.payload,
+        // (action.payload.id = nanoid()),
+      ];
       localStorage.setItem("allUsers", JSON.stringify(state.allUsers));
     });
   },
