@@ -8,16 +8,7 @@ const Account = () => {
   const Navigate = useNavigate();
   const Dispatch = useDispatch();
   const { loggedInUser } = useSelector((state) => state.allUsers);
-  //   console.log(loggedInUser);
-
   const handleDeletion = () => {
-    // const filteredUsers = JSON.parse(localStorage.getItem("allUsers")).filter(
-    //   (user) => user.email !== loggedInUser.email
-    // );
-
-    // localStorage.setItem("allUsers", JSON.stringify(filteredUsers));
-    // Dispatch(refreshAllUsers());
-    // localStorage.removeItem("loggedInUser");
     Dispatch(deleteUser(loggedInUser));
     Navigate("/login");
   };
@@ -37,11 +28,17 @@ const Account = () => {
         <h2 className="text-xl font-semibold text-secondary">
           Email: {loggedInUser.email}
         </h2>
+        <h2 className="text-xl font-semibold text-secondary">
+          User_Type: {loggedInUser.userType == "B" ? "Buyer" : "Seller"}
+        </h2>
         <h2 className="text-xl font-semibold text-secondary mb-10">
           Password: {loggedInUser.password}
         </h2>
         <div className="w-2/4 h-1/4 bg-purple-200 rounded-full flex justify-between p-1">
-          <button className="px-3 py-1 rounded-full bg-purple-600 text-white font-semibold hover:scale-105">
+          <button
+            className="px-3 py-1 rounded-full bg-purple-600 text-white font-semibold hover:scale-105"
+            onClick={() => Navigate("/edit-profile")}
+          >
             Edit Profile
           </button>
           <button
