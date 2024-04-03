@@ -1,22 +1,20 @@
 // import React from 'react'
 
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setSingleProduct } from "../Store/Reducers/ProductReducer";
 import { useEffect, useState } from "react";
 import { getFilteredProductsAPI } from "../Api/Auth";
 
 const AsideSection = () => {
   const Dispatch = useDispatch();
-  const { search } = useLocation();
-  const category = decodeURIComponent(search.split("=")[1]);
   const Navigate = useNavigate();
-  const { allProducts } = useSelector((state) => state.allProducts);
-  // const { filteredProducts } = useSelector((state) => state.allProducts);
+  const { allProducts, category } = useSelector((state) => state.allProducts);
+
   const [products, setProducts] = useState(allProducts);
 
   useEffect(() => {
-    if (category !== "undefined") {
+    if (category !== "") {
       Dispatch(getFilteredProductsAPI(category)).then((res) =>
         setProducts(res.payload)
       );

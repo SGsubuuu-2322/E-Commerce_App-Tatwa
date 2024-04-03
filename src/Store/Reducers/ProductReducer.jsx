@@ -9,6 +9,7 @@ const initialState = {
   allProducts: [],
   singleProduct: {},
   filteredProducts: [],
+  category: "",
 };
 
 export const productSlice = createSlice({
@@ -17,6 +18,10 @@ export const productSlice = createSlice({
   reducers: {
     setSingleProduct: (state, action) => {
       return { ...state, singleProduct: action.payload };
+    },
+
+    refreshCategory: (state, action) => {
+      state.category = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -40,4 +45,4 @@ export const productSlice = createSlice({
     });
   },
 });
-export const { setSingleProduct } = productSlice.actions;
+export const { setSingleProduct, refreshCategory } = productSlice.actions;
