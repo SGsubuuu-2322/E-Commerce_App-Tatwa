@@ -17,10 +17,14 @@ const ProductComponent = () => {
     }
   }, []);
 
+  const handleCart = () => {
+    Navigate("/cart");
+  }
+
   return (
     <div className="w-full h-full bg-purple-100 p-10 pb-32 overflow-y-scroll">
       <button
-        className="px-5 py-2 rounded-3xl bg-secondary text-white font-semibold text-xl hover:scale-110"
+        className="px-5 py-2 rounded-3xl bg-secondary text-white font-semibold text-xl hover:scale-110 duration-200"
         onClick={() => Navigate(-1)}
       >
         Back
@@ -43,6 +47,12 @@ const ProductComponent = () => {
         <h4 className="w-72 text-center">
           Description: {singleProduct?.description}
         </h4>
+
+        <div className="m-3">
+          <button onClick={handleCart} className="px-5 py-2 rounded-3xl bg-secondary text-white font-semibold text-xl hover:scale-110 duration-200">
+            Add To Cart
+          </button>
+        </div>
 
         <div className="w-72 flex justify-between mt-5">
           <span className="flex items-center gap-1 text-lg font-semibold text-primary">
