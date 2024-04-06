@@ -20,7 +20,7 @@ const Account = () => {
   return (
     <div className="w-full h-full bg-white p-10 pb-20 overflow-y-auto">
       <div className="w-3/4 h-5/6 bg-purple-100 rounded-full m-auto flex flex-col justify-start items-center p-10 shadow-2xl">
-        <div className="w-28 h-28 rounded-full bg-purple-600 p-1">
+        <div className="w-28 h-28 rounded-full bg-purple-600 p-1 overflow-hidden flex justify-center items-center">
           <img
             src={user?.profileImg}
             alt="user-img"
