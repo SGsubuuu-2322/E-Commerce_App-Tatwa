@@ -4,6 +4,7 @@ import { FaStarHalfAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getSingleProductAPI } from "../Api/Auth";
+import { decrementProduct } from "../Store/Reducers/ProductReducer";
 
 const ProductComponent = () => {
   const Navigate = useNavigate();
@@ -18,8 +19,11 @@ const ProductComponent = () => {
   }, []);
 
   const handleCart = () => {
+    // console.log(id);
+    Dispatch(decrementProduct(id));
+
     Navigate("/cart");
-  }
+  };
 
   return (
     <div className="w-full h-full bg-purple-100 p-10 pb-32 overflow-y-scroll">
@@ -49,7 +53,10 @@ const ProductComponent = () => {
         </h4>
 
         <div className="m-3">
-          <button onClick={handleCart} className="px-5 py-2 rounded-3xl bg-secondary text-white font-semibold text-xl hover:scale-110 duration-200">
+          <button
+            onClick={handleCart}
+            className="px-5 py-2 rounded-3xl bg-secondary text-white font-semibold text-xl hover:scale-110 duration-200"
+          >
             Add To Cart
           </button>
         </div>

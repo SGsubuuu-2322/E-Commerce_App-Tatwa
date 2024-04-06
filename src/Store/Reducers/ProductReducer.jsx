@@ -21,7 +21,22 @@ export const productSlice = createSlice({
     },
 
     refreshCategory: (state, action) => {
-      state.category = action.payload;
+      return { ...state, category: action.payload };
+    },
+
+    decrementProduct: (state, action) => {
+      // console.log(action.payload);
+      const prdInd = state.allProducts.findIndex((p) => action.payload == p.id);
+      --state.allProducts[prdInd].rating.count;
+      state.singleProduct = state.allProducts[prdInd];
+      localStorage.setItem("allProducts", JSON.stringify(state.allProducts));
+    },
+    incrementProduct: (state, action) => {
+      // console.log(action.payload);
+      const prdInd = state.allProducts.findIndex((p) => action.payload == p.id);
+      ++state.allProducts[prdInd].rating.count;
+      state.singleProduct = state.allProducts[prdInd];
+      localStorage.setItem("allProducts", JSON.stringify(state.allProducts));
     },
   },
   extraReducers: (builder) => {
@@ -45,4 +60,9 @@ export const productSlice = createSlice({
     });
   },
 });
-export const { setSingleProduct, refreshCategory } = productSlice.actions;
+export const {
+  setSingleProduct,
+  refreshCategory,
+  decrementProduct,
+  incrementProduct,
+} = productSlice.actions;

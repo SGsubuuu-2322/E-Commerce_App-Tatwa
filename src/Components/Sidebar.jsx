@@ -25,6 +25,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (allProducts.length > 0) {
+      // console.log("Change in categories...");
       setCategories([
         ...new Set(
           allProducts.reduce((acc, curr) => [...acc, curr.category], [])
@@ -68,6 +69,7 @@ const Sidebar = () => {
             </button>
           )}
           {categories.map((category, i) => {
+            // console.log("category render----");
             return (
               <button
                 onClick={() => handleClick(category)}
