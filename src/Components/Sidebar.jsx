@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductsAPI } from "../Api/Auth";
 // import { NavLink } from "react-router-dom";
 import { tailwindBackgroundColors, tailwindBorderColors } from "../Config";
-import { refreshCategory } from "../Store/Reducers/ProductReducer";
+import {
+  refreshCategory,
+  setAllProducts,
+} from "../Store/Reducers/ProductReducer";
 
 const Sidebar = () => {
   const Dispatch = useDispatch();
@@ -32,7 +35,12 @@ const Sidebar = () => {
         ),
       ]);
     } else {
-      Dispatch(getProductsAPI());
+      if (JSON.parse(localStorage.getItem("allProducts"))) {
+        // console.log(JSON.parse(localStorage.getItem("allProducts")));
+        Dispatch(setAllProducts());
+      } else {
+        Dispatch(getProductsAPI());
+      }
     }
   }, [allProducts]);
 

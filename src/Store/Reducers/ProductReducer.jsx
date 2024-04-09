@@ -16,6 +16,13 @@ export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    setAllProducts: (state) => {
+      // console.log(action.payload);
+      return {
+        ...state,
+        allProducts: JSON.parse(localStorage.getItem("allProducts")),
+      };
+    },
     setSingleProduct: (state, action) => {
       return { ...state, singleProduct: action.payload };
     },
@@ -26,7 +33,9 @@ export const productSlice = createSlice({
 
     decrementProduct: (state, action) => {
       // console.log(action.payload);
+      // console.log(state.allProducts);
       const prdInd = state.allProducts.findIndex((p) => action.payload == p.id);
+      // console.log(prdInd);
       --state.allProducts[prdInd].rating.count;
       state.singleProduct = state.allProducts[prdInd];
       localStorage.setItem("allProducts", JSON.stringify(state.allProducts));
@@ -61,6 +70,7 @@ export const productSlice = createSlice({
   },
 });
 export const {
+  setAllProducts,
   setSingleProduct,
   refreshCategory,
   decrementProduct,

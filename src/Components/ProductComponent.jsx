@@ -19,10 +19,9 @@ const ProductComponent = () => {
   }, []);
 
   const handleCart = () => {
-    // console.log(id);
     Dispatch(decrementProduct(id));
 
-    Navigate("/cart");
+    Navigate(`/cart/${id}`);
   };
 
   return (

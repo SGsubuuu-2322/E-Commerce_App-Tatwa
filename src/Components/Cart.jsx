@@ -1,19 +1,28 @@
 // import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaStarHalfAlt } from "react-icons/fa";
 import {
   decrementProduct,
   incrementProduct,
+  setAllProducts,
 } from "../Store/Reducers/ProductReducer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Cart = () => {
+  const { id } = useParams();
   const Dispatch = useDispatch();
   const Navigate = useNavigate();
   const [count, setCount] = useState(1);
   const { singleProduct } = useSelector((state) => state.allProducts);
-  //   console.log(singleProduct);
+  useEffect(() => {
+    if (Object.keys(singleProduct).length === 0) {
+      Dispatch(setAllProducts());
+      Dispatch(decrementProduct(id));
+    }
+  }, [singleProduct]);
+  // console.log(singleProduct);
+
   return (
     <div className="w-full h-full bg-purple-100 p-10 pb-32 overflow-y-scroll">
       <button

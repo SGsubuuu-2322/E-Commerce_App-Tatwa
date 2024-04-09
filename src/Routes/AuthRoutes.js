@@ -22,7 +22,7 @@ export const AuthRoutes = [
     element: EditProfile,
   },
   {
-    path: "/cart",
+    path: "/cart/:id",
     element: Cart,
   },
 ];
