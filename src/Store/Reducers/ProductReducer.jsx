@@ -4,7 +4,6 @@ import {
   getProductsAPI,
   getSingleProductAPI,
 } from "../../Api/Auth";
-
 const initialState = {
   allProducts: [],
   singleProduct: {},
@@ -41,15 +40,19 @@ export const productSlice = createSlice({
       };
     },
 
+    refreshProductCount: (state, action) => {
+      const prdInd = state.allProducts.findIndex((p) => action.payload == p.id);
+      state.allProducts[prdInd].rating.count =
+        +JSON.parse(localStorage.getItem("productCount")) - 1;
+      localStorage.setItem("allProducts", JSON.stringify(state.allProducts));
+    },
+
     refreshCategory: (state, action) => {
       return { ...state, category: action.payload };
     },
 
     decrementProduct: (state, action) => {
-      // console.log(action.payload);
-      // console.log(state.allProducts);
       const prdInd = state.allProducts.findIndex((p) => action.payload == p.id);
-      // console.log(prdInd);
       --state.allProducts[prdInd].rating.count;
       state.singleProduct = state.allProducts[prdInd];
       localStorage.setItem("allProducts", JSON.stringify(state.allProducts));
@@ -87,6 +90,7 @@ export const {
   setAllProducts,
   setSingleProduct,
   refreshSingleProduct,
+  refreshProductCount,
   refreshCategory,
   decrementProduct,
   incrementProduct,

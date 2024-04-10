@@ -5,6 +5,7 @@ import { FaStarHalfAlt } from "react-icons/fa";
 import {
   decrementProduct,
   incrementProduct,
+  refreshProductCount,
   refreshSingleProduct,
   setAllProducts,
 } from "../Store/Reducers/ProductReducer";
@@ -20,6 +21,7 @@ const Cart = () => {
     if (Object.keys(singleProduct).length === 0) {
       Dispatch(setAllProducts());
       Dispatch(refreshSingleProduct(id));
+      Dispatch(refreshProductCount(id));
     }
   }, [singleProduct]);
   // console.log(singleProduct);
