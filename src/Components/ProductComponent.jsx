@@ -3,8 +3,12 @@ import { useEffect } from "react";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getSingleProductAPI } from "../Api/Auth";
-import { decrementProduct } from "../Store/Reducers/ProductReducer";
+// import { getSingleProductAPI } from "../Api/Auth";
+import {
+  decrementProduct,
+  refreshSingleProduct,
+  setAllProducts,
+} from "../Store/Reducers/ProductReducer";
 
 const ProductComponent = () => {
   const Navigate = useNavigate();
@@ -13,10 +17,11 @@ const ProductComponent = () => {
   const { singleProduct } = useSelector((state) => state.allProducts);
 
   useEffect(() => {
-    if (Object.keys(singleProduct).length === 0) {
-      Dispatch(getSingleProductAPI(id));
+    if (Object.keys(singleProduct).length == 0) {
+      Dispatch(setAllProducts());
+      Dispatch(refreshSingleProduct(id));
     }
-  }, []);
+  }, [singleProduct]);
 
   const handleCart = () => {
     Dispatch(decrementProduct(id));
