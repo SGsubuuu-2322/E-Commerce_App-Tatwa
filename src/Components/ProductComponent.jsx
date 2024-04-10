@@ -24,6 +24,13 @@ const ProductComponent = () => {
   }, [singleProduct]);
 
   const handleCart = () => {
+    // console.log(singleProduct);
+
+    localStorage.setItem(
+      "productCount",
+      JSON.stringify(singleProduct.rating.count)
+    );
+
     Dispatch(decrementProduct(id));
 
     Navigate(`/cart/${id}`);

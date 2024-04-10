@@ -28,9 +28,16 @@ export const productSlice = createSlice({
 
     refreshSingleProduct: (state, action) => {
       const product = state.allProducts.find((p) => p.id == action.payload);
+      const temp = { ...product };
+      temp.rating = {
+        ...temp.rating,
+        count: +JSON.parse(localStorage.getItem("productCount")) - 1,
+      };
+
+      // console.log(temp);
       return {
         ...state,
-        singleProduct: product,
+        singleProduct: temp,
       };
     },
 
